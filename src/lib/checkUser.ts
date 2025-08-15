@@ -3,6 +3,7 @@ import { db } from "./prisma";
 
 export const checkUser = async () => {
   const user = await currentUser();
+  // console.log(user);
 
   if (!user) {
     return null;
@@ -19,7 +20,7 @@ export const checkUser = async () => {
             type: "CREDIT_PURCHASE",
             // Only get transactions from current month
             createdAt: {
-              gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+              gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),   // created at current month
             },
           },
           orderBy: {
@@ -46,7 +47,7 @@ export const checkUser = async () => {
           create: {
             type: "CREDIT_PURCHASE",
             packageId: "free_user",
-            amount: 0,
+            amount: 2,
           },
         },
       },
